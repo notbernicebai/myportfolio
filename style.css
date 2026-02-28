@@ -1,0 +1,201 @@
+body{
+    background-color: #f6f6f6;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+html{
+    cursor:pointer;
+    cursor:help;
+    cursor:hover;
+    cursor: url('imgsrc/cursor.svg') 10 10, auto;
+
+    }
+nav{
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5%;
+    padding-right: 2%;
+    padding-left: 1%;
+
+}
+#nav-links{
+    display: flex;
+    gap: 20px;
+}
+#logo img{
+    width: 50px;
+    height: 50px;
+}
+#nav-links a{
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    letter-spacing: -1%;
+}
+#nav-links a:hover{
+    color: #89B9AF;
+}
+.divider{
+    width: 100%;
+    height: 1px;
+    background-color: #89b9af00;
+}
+#hero{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    max-width: 100%;
+    max-height: auto;
+}
+@media (max-width: 80%) {
+    #hero {
+        flex-direction: column;
+        margin: 0%;
+    }
+}
+#card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#cardimg{
+    padding-top: 5%;
+    justify-content: center;
+    height: auto;
+}
+#cardimg img{
+    width: 97%;
+    height: auto;
+}
+
+
+#selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: none;
+}
+#selection h2{
+
+    font-family: 'Anonymous Pro', sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+#selection h2{
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid #F2837B; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  padding: 2px;
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .1oem; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #F2837B; }
+}
+
+#selection p{
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+}
+
+#selBtn{
+    display: flex;
+    gap: 30px;
+    font-family: 'Inter', sans-serif;
+    background-color: #fffdf9;
+    border: black solid 1px;
+    border-radius: 50px
+
+
+}
+
+.prodBtn{
+    border-radius: 50px;
+    border-color: none;
+    padding: 10px 15px;
+    background-color: #000000;
+    color: #fffdf9;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.comBtn{
+    /* border-radius: 50px;
+    border-color: #000000; */
+    border: none;
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    color:#000000;
+    font-size: 16px;
+}
+
+.comBtn:hover{
+    color: #a4a3a2;
+}
+#catstack{
+    padding-top: 1px;
+}
+
+
+
+
+#prodProjects{
+    display: grid;
+    grid-template-columns:  repeat(2, 1fr);
+    padding-top: 5%;
+    gap: 20px; 
+    align-content: first baseline; 
+    
+}
+@media (max-width: 768px) {
+    #prodProjects {
+        grid-template-columns:  1fr;
+    }
+}
+#prodFrame{
+    border-radius: 80px;
+}
+.prodImg{
+    width: 100%;
+    height: auto;
+}
+.prodInfo{
+    font-family: 'source sans pro', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.prodTags{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.circletag{
+    width: 4px;
+    height: 4px;
+    background-color: #000000;
+    border-radius: 150%;
+}
