@@ -6,142 +6,145 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Bernice Bai ┃ Designer</title>
     <link rel="icon" href="imgsrc/cursor.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:100,200,300,400,600&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,600&display=swap">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="custom-cursor">
+    <span id="cursor-default"></span>
+    <span id="cursor-hover"></span>
+    </div>
 
 <header>
 
-    <nav id="navbar">
-        <div id="logo">
-            <img src="imgsrc/bfavicon.svg" alt="Logo">
-        </div>
-        <div id="nav-links">
-            <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
-            <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link">RESUME</a>
-        </div>
-    </nav>
-<div class="divider">
+   <nav id="navbar">
+    <div id="logo">
+        <img src="imgsrc/bfavicon.svg" alt="Logo">
+    </div>
+    <button id="menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div id="nav-links">
+        <a href="index.html">WORK</a>
+        <a href="about.html">ABOUT</a>
+        <a href="#contact">QUEST</a>
+        <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link">RESUME</a>
+    </div>
+</nav>
 
+<div class="divider">
 </div>
+
 </header>
 
 <main>
-    <section id="hero">
-
-    <div id="card">
-
-        <div id="cardimg">
-            <img src="imgsrc/tagline.svg" alt="Profile Card" class="profile-pic">
-        </div>
-
-        <div id="cardtext">		
-            <!--<h2 class="hi">Hi, I'm Bernice</h2>
-            <h4 class="aprod">A PRODUCT AND COMMUNICATION DESIGNER</h4>-->
-        </div>
-        <div id="catstack">
-            <img src="imgsrc/catstack.svg" alt="stack" class="ctsk">
-        </div> 
-
+   <section id="hero">
+    <div id="herotextcontainer">
+        <h1 class="hi">I'm Bernice, a product designer who <em>listens.</em></h1>
     </div>
-    
-    <div id="selection">
-        
-        <h2><span>What do you want to see today?</span></h2> 
 
-        <p>Please select one option</p>
-
-    <!--<select id="options">
-        <option value="product">Product Design</option>
-        <option value="graphics">Graphics & Motion</option> -->
-        
-        <div id="selBtn">
-        <button class="prodBtn">Product Design</button>    
-        <button class="comBtn">Visual Media</button>  
-        </div> 
-        
-    
+    <div id="capabilities">
+    <div class="cap-row">
+        <span class="cap-title">Research & Testing</span>
+        <span class="cap-desc">User interviews, usability testing, synthesis</span>
     </div>
+    <div class="cap-row">
+        <span class="cap-title">Interaction Design</span>
+        <span class="cap-desc">Wireframes, prototypes, micro-interactions</span>
+    </div>
+    <div class="cap-row">
+        <span class="cap-title">Design Systems</span>
+        <span class="cap-desc">Components, tokens, documentation</span>
+    </div>
+    <div class="cap-row">
+        <span class="cap-title">Frontend</span>
+        <span class="cap-desc">HTML, CSS, basic JavaScript</span>
+    </div>
+</div>
+</section>
+ 
     
-    </section>
+ 
+<section id="prodProjects">
 
-    <!-- <p class="about-text">  I’m a ui/ux designer with frontend development knowledge and usability focus... <br>
-       my work values clarity and accessibility </p>-->
-
-    <section id="prodProjects">
-
-            <div id="prodFrame">
-                <img class="prodImg" src="imgsrc/projects/ptimg.png" alt="Project 1">
-
-                <div class="prodInfo">
-                    <p class="prodName">Pomodoro Timer</p>
-
-                    <div class="prodTags">
-                        <div class="circletag"></div>
-                        <p>Productivity</p>
-                        <div class="circletag"></div>
-                        <p>Focus</p>
-                    </div>
-                </div>
-                    
-            </div>
-           
+    <div class="prodFrame" data-cursor="view details">
         
-        
-            <div id="prodFrame">
-                <img class="prodImg" src="imgsrc/projects/brew&chill case cover.png" alt="Project 1">
-
-                <div class="prodInfo">
-                    <p class="prodName">Ion Finance</p>
-
-                    <div class="prodTags">
-                        <div class="circletag"></div>
-                        <p>Banking</p>
-                        <div class="circletag"></div>
-                        <p>Finance</p>
-                    </div> 
-                </div>
+        <img class="prodImg" src="imgsrc/projects/ptimg.png" alt="Pomodoro Timer project">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">A focus tool for deep work sessions</p>
+                <p class="prodDesc"></p>
             </div>
-        <div id="prodFrame">
-                <img class="prodImg" src="imgsrc/projects/cld show.png" alt="Project 1">
-
-                <div class="prodInfo">
-                    <p class="prodName">Ion Finance</p>
-
-                    <div class="prodTags">
-                        <div class="circletag"></div>
-                        <p>Banking</p>
-                        <div class="circletag"></div>
-                        <p>Finance</p>
-                    </div> 
-                </div>
+            <div class="prodTags">
+                <span class="tag">Pomodoro Timer</span>
+                <span class="tag">•</span>
+                <span class="tag">Productivity</span>
+                <span class="tag">•</span>
+                <span class="tag">2024</span>
             </div>
-            <div id="prodFrame">
-                <img class="prodImg" src="imgsrc/projects/dashboard 2.png" alt="Project 5">
+        </div>
+    </div>
 
-                <div class="prodInfo">
-                    <p class="prodName">Ion Finance</p>
-
-                    <div class="prodTags">
-                        <div class="circletag"></div>
-                        <p>Banking</p>
-                        <div class="circletag"></div>
-                        <p>Finance</p>
-                    </div> 
-                </div>
+    <div class="prodFrame">
+        <img id="hiprodimg" class="prodImg" src="imgsrc/projects/brew-chill-case-cover.png" alt="Brew and Chill project">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">Ecommerce experience for a lifestyle brand</p>
+                <p class="prodDesc"></p>
             </div>
-    
-    </section>
+            <div class="prodTags">
+                <span class="tag">Brew&Chill</span>
+                <span class="tag">•</span>
+                <span class="tag">Ecommerce</span>
+                <span class="tag">•</span>
+                <span class="tag">2024</span>
+            </div>
+        </div>
+    </div>
 
+    <div class="prodFrame">
+        <img class="prodImg" src="imgsrc/projects/cld-show.png" alt="Cloud Show project">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">Cloud Show</p>
+                <p class="prodDesc">Streaming platform concept</p>
+            </div>
+            <div class="prodTags">
+                <span class="tag">Entertainment</span>
+                <span class="tag">•</span>
+                <span class="tag">Concept</span>
+                <span class="tag">•</span>
+                <span class="tag">2024</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="prodFrame">
+        <img class="prodImg" src="imgsrc/projects/dashboard-2.png" alt="Ion Finance dashboard">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">Ion Finance</p>
+                <p class="prodDesc">Banking dashboard for modern users</p>
+            </div>
+            <div class="prodTags">
+                <span class="tag">Fintech</span>
+                <span class="tag">•</span>
+                <span class="tag">2023</span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+  
 </main>
 
 
-<footer>
-    <p>&copy; <span id="year"></span> [Your Name]</p>
-</footer>
+
 
 <script>
     // Set current year
@@ -150,5 +153,7 @@
 <script src="script.js" defer></script>
 
 </body>
-
+<footer>
+    <p>&copy; <span id="year"></span> [Your Name]</p>
+</footer>
 </html>
