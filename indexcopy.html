@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bernice Bai ┃ Designer</title>
+    <link rel="icon" href="imgsrc/cursor.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,600&display=swap">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="custom-cursor">
+    <span id="cursor-default"></span>
+    <span id="cursor-hover"></span>
+    </div>
+
+<header>
+
+   <nav id="navbar">
+    <div id="logo">
+        <img src="imgsrc/bfavicon.svg" alt="Logo">
+    </div>
+    <button id="menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div id="nav-links">
+        <a href="index.html">WORK</a>
+        <a href="about.html">ABOUT</a>
+        <a href="#contact">QUEST</a>
+        <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link">RESUME</a>
+    </div>
+</nav>
+
+<div class="divider">
+</div>
+
+</header>
+
+<main>
+   <section id="hero">
+    <div id="herotextcontainer">
+        <h1 class="hi">I'm Bernice, a product designer who <em>listens.</em></h1>
+    </div>
+
+    <div id="capabilities">
+    <div class="cap-row">
+        <span class="cap-title">Research & Testing</span>
+        <span class="cap-desc">User interviews, usability testing, synthesis</span>
+    </div>
+    <div class="cap-row">
+        <span class="cap-title">Interaction Design</span>
+        <span class="cap-desc">Wireframes, prototypes, micro-interactions</span>
+    </div>
+    <div class="cap-row">
+        <span class="cap-title">Design Systems</span>
+        <span class="cap-desc">Components, tokens, documentation</span>
+    </div>
+    <div class="cap-row">
+        <span class="cap-title">Frontend</span>
+        <span class="cap-desc">HTML, CSS, basic JavaScript</span>
+    </div>
+</div>
+</section>
+ 
+    
+ 
+<section id="prodProjects">
+
+    <div class="prodFrame" data-cursor="view details">
+        
+        <img class="prodImg" src="imgsrc/projects/ptimg.png" alt="Pomodoro Timer project">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">A focus tool for deep work sessions</p>
+                <p class="prodDesc"></p>
+            </div>
+            <div class="prodTags">
+                <span class="tag">Pomodoro Timer</span>
+                <span class="tag">•</span>
+                <span class="tag">Productivity</span>
+                <span class="tag">•</span>
+                <span class="tag">2024</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="prodFrame">
+        <img id="hiprodimg" class="prodImg" src="imgsrc/projects/brew-chill-case-cover.png" alt="Brew and Chill project">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">Ecommerce experience for a lifestyle brand</p>
+                <p class="prodDesc"></p>
+            </div>
+            <div class="prodTags">
+                <span class="tag">Brew&Chill</span>
+                <span class="tag">•</span>
+                <span class="tag">Ecommerce</span>
+                <span class="tag">•</span>
+                <span class="tag">2024</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="prodFrame">
+        <img class="prodImg" src="imgsrc/projects/ifc-concept.png" alt="Ion Finance concept">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">Ion Finance </p>
+                <p class="prodDesc">clear and simple financial management</p>
+            </div>
+            <div class="prodTags">
+                <span class="tag">Fintech</span>
+                <span class="tag">•</span>
+                <span class="tag">Concept</span>
+                <span class="tag">•</span>
+                <span class="tag">2025</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="prodFrame">
+        <img class="prodImg" src="imgsrc/projects/dashboard-2.png" alt="Ion Finance dashboard">
+        <div class="prodInfo">
+            <div class="prodLeft">
+                <p class="prodName">Ion Finance</p>
+                <p class="prodDesc">Banking dashboard for modern users</p>
+            </div>
+            <div class="prodTags">
+                <span class="tag">Fintech</span>
+                <span class="tag">•</span>
+                <span class="tag">2023</span>
+            </div>
+        </div>
+    </div> -->
+
+</section>
+
+  
+</main>
+
+
+
+
+<script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="script.js" defer></script>
+
+</body>
+<footer>
+    <p>&copy; <span id="year"></span> [Your Name]</p>
+</footer>
+</html>
