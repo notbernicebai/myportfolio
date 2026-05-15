@@ -292,7 +292,7 @@ main {
     flex-direction: column;
     border-top: 0.5px solid #eeeeee;
     margin-bottom: 5%;
-    border: 1px solid black;
+    border: 0px ;
 }
 
 .prodImg {
@@ -300,7 +300,7 @@ main {
     height: 300px;
     object-fit: cover;
     display: block;
-    border: 0px solid #757575;
+    border: 0px ;
 }
 
 @media (min-width: 768px) {
