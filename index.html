@@ -2,158 +2,167 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bernice Bai ┃ Designer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bernice Bai ┃ Designer</title>
     <link rel="icon" href="imgsrc/cursor.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne:100,200,300,400,600&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:100,200,300,400,600&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,600&display=swap">
-	<link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0 5%;
+        }
+
+        #custom-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        #cursor-default {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url('imgsrc/cursor.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 0.5px solid #eeeeee;
+        }
+
+        #logo img { width: 40px; height: auto; }
+
+        .nav-right {
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #999999;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 0 40px;
+        }
+
+        .label {
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #999999;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Lora', san-serif;
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        h1 em { font-style: bold; }
+
+        .accent { color: #002e2d; }
+
+        p {
+            font-size: 15px;
+            font-weight: 300;
+            color: #666666;
+            line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 40px;
+        }
+
+        .links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .links a {
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #111111;
+            text-decoration: none;
+            border-bottom: 0.5px solid #111111;
+            padding-bottom: 2px;
+        }
+
+        .links a:hover { color: #002e2d; border-color: #ffffff; }
+
+        footer {
+            padding: 24px 0;
+            border-top: 0.5px solid #eeeeee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 11px;
+            color: #999999;
+            margin: 0;
+            max-width: none;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="custom-cursor">
+
+<div id="custom-cursor">
     <span id="cursor-default"></span>
-    <span id="cursor-hover"></span>
-    </div>
+</div>
 
-<header>
-
-   <nav id="navbar">
+<nav>
     <div id="logo">
         <img src="imgsrc/bfavicon.svg" alt="Logo">
     </div>
-    <button id="menu-btn" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div id="nav-links">
-        <a href="index.html">WORK</a>
-        <a href="about.html">ABOUT</a>
-        <a href="#contact">QUEST</a>
-        <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link">RESUME</a>
-    </div>
+    <span class="nav-right">Coming Soon</span>
 </nav>
 
-<div class="divider">
-</div>
-
-</header>
-
 <main>
-   <section id="hero">
-    <div id="herotextcontainer">
-        <h1 class="hi">I'm Bernice, a product designer who <em>listens.</em></h1>
+    <p class="label">Portfolio — Under Construction</p>
+    <h1>Something <em><span class="accent">thoughtful</span></em><br>is on its way.</h1>
+    <p>I'm Bernice — a product designer rooted in art and technology. My portfolio is currently being built. In the meantime, feel free to reach out.</p>
+    <div class="links">
+        <a href="https://www.linkedin.com/in/bernice-bai-6373b129a/" target="_blank">LinkedIn</a>
+        <a href="mailto:msenbai@gmail.com">Email</a>
+        <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link" target="_blank">Resume</a>
     </div>
-
-    <div id="capabilities">
-    <div class="cap-row">
-        <span class="cap-title">Research & Testing</span>
-        <span class="cap-desc">User interviews, usability testing, synthesis</span>
-    </div>
-    <div class="cap-row">
-        <span class="cap-title">Interaction Design</span>
-        <span class="cap-desc">Wireframes, prototypes, micro-interactions</span>
-    </div>
-    <div class="cap-row">
-        <span class="cap-title">Design Systems</span>
-        <span class="cap-desc">Components, tokens, documentation</span>
-    </div>
-    <div class="cap-row">
-        <span class="cap-title">Frontend</span>
-        <span class="cap-desc">HTML, CSS, basic JavaScript</span>
-    </div>
-</div>
-</section>
- 
-    
- 
-<section id="prodProjects">
-
-    <div class="prodFrame" data-cursor="view details">
-        
-        <img class="prodImg" src="imgsrc/projects/ptimg.png" alt="Pomodoro Timer project">
-        <div class="prodInfo">
-            <div class="prodLeft">
-                <p class="prodName">A focus tool for deep work sessions</p>
-                <p class="prodDesc"></p>
-            </div>
-            <div class="prodTags">
-                <span class="tag">Pomodoro Timer</span>
-                <span class="tag">•</span>
-                <span class="tag">Productivity</span>
-                <span class="tag">•</span>
-                <span class="tag">2024</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="prodFrame">
-        <img id="hiprodimg" class="prodImg" src="imgsrc/projects/brew-chill-case-cover.png" alt="Brew and Chill project">
-        <div class="prodInfo">
-            <div class="prodLeft">
-                <p class="prodName">Ecommerce experience for a lifestyle brand</p>
-                <p class="prodDesc"></p>
-            </div>
-            <div class="prodTags">
-                <span class="tag">Brew&Chill</span>
-                <span class="tag">•</span>
-                <span class="tag">Ecommerce</span>
-                <span class="tag">•</span>
-                <span class="tag">2024</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="prodFrame">
-        <img class="prodImg" src="imgsrc/projects/ifc-concept.png" alt="Ion Finance concept">
-        <div class="prodInfo">
-            <div class="prodLeft">
-                <p class="prodName">Ion Finance </p>
-                <p class="prodDesc">clear and simple financial management</p>
-            </div>
-            <div class="prodTags">
-                <span class="tag">Fintech</span>
-                <span class="tag">•</span>
-                <span class="tag">Concept</span>
-                <span class="tag">•</span>
-                <span class="tag">2025</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- <div class="prodFrame">
-        <img class="prodImg" src="imgsrc/projects/dashboard-2.png" alt="Ion Finance dashboard">
-        <div class="prodInfo">
-            <div class="prodLeft">
-                <p class="prodName">Ion Finance</p>
-                <p class="prodDesc">Banking dashboard for modern users</p>
-            </div>
-            <div class="prodTags">
-                <span class="tag">Fintech</span>
-                <span class="tag">•</span>
-                <span class="tag">2023</span>
-            </div>
-        </div>
-    </div> -->
-
-</section>
-
-  
 </main>
 
-
-
+<footer>
+    <p>&copy; <span id="year"></span> Bernice Bai</p>
+    <p>Abuja, Nigeria</p>
+</footer>
 
 <script>
-    // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 </script>
-<script src="script.js" defer></script>
 
 </body>
-<footer>
-    <p>&copy; <span id="year"></span> [Your Name]</p>
-</footer>
 </html>
