@@ -553,6 +553,7 @@ footer {
     }
     .accordion {
       border-top: 0.5px ;
+      padding-bottom: 3rem;
     }
  
     .accordion-item {
