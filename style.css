@@ -66,10 +66,21 @@ body {
     padding: 20px 16px;
     position: relative; /* add this */
 }
-
+#logo {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
 #logo img {
     width: 40px;
     height: auto;
+}
+#logo p {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #333333;
+    margin: 0;
 }
 
 /* links — matches id="nav-links" */
@@ -164,7 +175,7 @@ main {
     padding: 40px 16px 24px;
     gap: 32px;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -187,6 +198,15 @@ main {
     #herotextcontainer {
         max-width: 50%;
     }
+}
+#herotextcontainer .heroimg{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid #111111;
+  margin-top: 1.5rem;
+  object-fit: cover;
 }
 
 .hi {
@@ -519,3 +539,232 @@ footer {
 .dot.active {
     background-color: #111111;
 }
+
+
+/* ACCORDION */
+.section-label {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-bottom: 0.75rem;
+      padding-bottom: 6px;
+    }
+    .accordion {
+      border-top: 0.5px ;
+    }
+ 
+    .accordion-item {
+      border-bottom: 0.5px ;
+    }
+
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      gap: 2rem;
+    }
+ 
+    .accordion-header:hover .accordion-title {
+      color: #066658;
+    }
+ 
+    .accordion-meta {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+ 
+    .accordion-tag {
+      align-self: center;
+      font-family: Inter, sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.8em;
+      text-transform: uppercase;
+      color: #111111;
+    }
+ 
+    .accordion-title {
+      align-self: center;
+      font-family: Lora, Serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #111111;
+      transition: color 0.2s;
+      line-height: 1.3;
+    }
+ 
+    .accordion-desc {
+        align-self: center;
+      font-family: Inter, sans-serif;
+      font-size: 14px;
+      color: #4e4e4e;
+      margin-top: 2px;
+    }
+    .accordion-sum-cards {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+  
+    }
+    @media (max-width: 768px) {
+    .accordion-sum-cards {
+        flex-direction: column;
+    }
+    }
+
+    .sum-card {
+    display: block;
+    background: var(--card-bg, #F9F9F9);
+    border: 1.5px solid #111111;
+    border-radius: 10px;
+    padding: 15px;
+    flex: 1;        /* each card grows equally */
+    min-width: 0;   /* prevents overflow */
+    }
+    .sum-card h3 {
+    font-family: Lora, Serif;
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: #2e2e2e;
+    }
+    .sum-card p {
+    font-family: Inter;
+    font-size: 14px;
+    color: #111111;
+    }
+    .accordion-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+ 
+    .tool-pill {
+      font-size: 14px;
+      color: #888888;
+      border-left: 2px solid #111111;
+      padding: 2px 15px;
+    }
+ 
+    .accordion-toggle {
+      font-size: 30px;
+      color: #000000;
+      flex-shrink: 0;
+      margin-top: 6px;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+ 
+    .accordion-item.open .accordion-toggle {
+      transform: rotate(45deg);
+    }
+ 
+    /* ACCORDION BODY */
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+ 
+    .accordion-item.open .accordion-body {
+      max-height: 2000px;
+    }
+ 
+    .accordion-content {
+      padding: 0 0 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+ 
+    .content-block h3 {
+      font-family: Lora, Serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999999;
+      margin-bottom: 0.75rem;
+      padding-bottom: 6px;
+      border-bottom: 0.5px solid #999999;
+    }
+ 
+    .content-block p {
+      font-family: Inter, sans-serif;
+      font-size: 14px;
+      color: #111111;
+      line-height: 1.75;
+    }
+ 
+    .content-block ul {
+      list-style: none;
+      padding: 0;
+    }
+ 
+    .content-block ul li {
+      font-size: 14px;
+      color: #111111;
+      line-height: 1.75;
+      padding-left: 1rem;
+      position: relative;
+    }
+ 
+    .content-block ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #999999;
+    }
+ 
+    .stat-highlight {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: #111111;
+      display: block;
+      margin-bottom: 4px;
+    }
+ 
+    .full-width {
+      grid-column: 1 / -1;
+    }
+ 
+
+
+  /* FOOTER */
+    footer {
+      padding: 1rem 2rem;
+      border-top: 0.5px solid #dddddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+ 
+    footer p {
+      font-size: 13px;
+      color: var(--grey);
+    }
+ 
+    footer a {
+      font-size: 13px;
+      color: #111111;
+      text-decoration: none;
+      border-bottom: 0.5px solid #111111;
+      padding-bottom: 1px;
+    }
+ 
+    footer a:hover { color: var(--rust); border-color: var(--rust); }
+ 
+    @media (max-width: 768px) {
+      nav, .hero, section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .accordion-content { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
