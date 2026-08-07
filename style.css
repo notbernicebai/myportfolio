@@ -558,6 +558,7 @@ footer {
  
     .accordion-item {
       border-bottom: 0.5px ;
+      margin-bottom: .5rem;
     }
 
     .accordion-header {
@@ -608,6 +609,48 @@ footer {
       color: #4e4e4e;
       margin-top: 2px;
     }
+
+    .content-gallery {
+      display: flex;
+      flex-wrap: wrap (1fr, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+      justify-content: center;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+}
+.content-gallery::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+@media screen and (max-width: 768px) {
+  .content-gallery {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+    .content-gallery img{
+
+     width: 30%;
+     height: auto;
+     align-content: center;
+
+    }
+    @media screen and (max-width: 768px) {
+        .content-gallery img {
+
+     width: 90%;
+     height: auto;
+     align-content: center;
+
+    }
+}
+    .content-gallery img:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
     .accordion-sum-cards {
     display: flex;
     width: 100%;
