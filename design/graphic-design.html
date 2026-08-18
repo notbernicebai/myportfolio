@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bernice Bai </title>
+    <link rel="icon" href="../imgsrc/cursor.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,600&display=swap">
+	<link rel="stylesheet" href="../style.css">
+<style>
+  :root {
+    --gap: 14px;
+    --radius: 18px;
+    --bg: #f3f1ec;
+  }
+ 
+  * { box-sizing: border-box; }
+ 
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+ 
+  .bento {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: auto;
+    align-items: start;
+    gap: var(--gap);
+  }
+ 
+  .cell {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: #ddd;
+    cursor: pointer;
+  }
+ 
+  .cell img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+ 
+  .cell:hover img {
+    transform: scale(1.06);
+  }
+ 
+  /* control each tile's width here — height follows the image's natural ratio */
+  .cell.a { grid-column: span 3; }
+  .cell.b { grid-column: span 3; }
+  .cell.c { grid-column: span 2; }
+  .cell.d { grid-column: span 2; }
+  .cell.e { grid-column: span 2; }
+  .cell.f { grid-column: span 3; }
+  .cell.g { grid-column: span 3; }
+  .cell.h { grid-column: span 4; }
+  .cell.i { grid-column: span 2; }
+ 
+  @media (max-width: 720px) {
+    .bento {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .cell.a, .cell.b, .cell.c, .cell.d,
+    .cell.e, .cell.f, .cell.g, .cell.h, .cell.i {
+      grid-column: span 1;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+    <div id="custom-cursor">
+    <span id="cursor-default"></span>
+    <span id="cursor-hover"></span>
+    </div>
+
+<header>
+
+   <nav id="navbar">
+    <div id="logo">
+        <img src="../imgsrc/bfavicon.svg" alt="Logo">
+    </div>
+    <button id="menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div id="nav-links">
+        <a href="../design/index.html">WORK</a>
+        <a href="../design/about.html">ABOUT</a>
+        <a href="../design/quest.html">QUEST</a>
+        <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link">RESUME</a>
+    </div>
+</nav>
+
+<div class="divider">
+</div>
+
+</header>
+<body>
+ 
+<div class="bento">
+
+  <div class="cell c"><img src="../imgsrc/gi/mias.png" alt=""></div>
+  <div class="cell a"><img src="../imgsrc/gi/caerd.png" alt=""></div>
+<!-- 
+ <div class="cell d"><img src="../imgsrc/gi/Frame 9.jpg" alt=""></div>
+  <div class="cell e"><img src="../imgsrc/gi/Frame 10.jpg" alt=""></div>
+  <div class="cell g"><img src="../imgsrc/gi/" alt=""></div>
+  <div class="cell h"><img src="https://picsum.photos/id/1084/900/600" alt=""></div>
+  <div class="cell i"><img src="https://picsum.photos/id/109/600/600" alt=""></div> -->
+</div>
+
+  <h3>Menu Designs</h3>
+ <div class="bento">
+  
+  <div class="cell b"><img src="../imgsrc/gi/Frame 10.png" alt=""></div>
+  <div class="cell f"><img src="../imgsrc/gi/Instagram post - 6.jpg" alt=""></div>
+  <div class="cell f"><img src="../imgsrc/gi/Instagram post - 3.jpg" alt=""></div>
+  <div class="cell f"><img src="../imgsrc/gi/Instagram post - 1.jpg" alt=""></div>
+  </div>
+</body>
+
+<script src="../script.js" defer></script>
+
+</body>
+<footer>
+    <p>&copy; <span id="year"></span> Bernice Bai</p>
+</footer>
+
+<script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</html>

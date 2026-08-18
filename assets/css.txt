@@ -1,0 +1,170 @@
+body{
+    width: 100%;
+    background-color: #ffffff;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+html{
+    cursor:pointer;
+    cursor:help;
+    cursor:hover;
+    cursor: url('imgsrc/cursor.svg') 10 10, auto;
+
+    }
+nav{
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5%;
+    padding-right: 2%;
+    padding-left: 1%;
+
+}
+#nav-links{
+    display: flex;
+    gap: 20px;
+}
+#logo img{
+    width: 50px;
+    height: 50px;
+}
+#nav-links a{
+    text-decoration: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    color: #000000d3;
+    letter-spacing: -5.5%;
+}
+#nav-links a:hover{
+    color: #89B9AF;
+}
+/* Hide the checkbox and the menu content by default */
+#menu-toggle {
+  display: none;
+}
+
+.menu-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+/* Style the menu icon/label */
+.menu-icon {
+  display: block; /* Show the icon */
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+}
+
+/* When the checkbox is checked, expand the menu */
+#menu-toggle:checked + .menu-icon + .menu-content {
+  max-height: 100vh; /* Use a large enough value to show all content */
+  transition: max-height 0.3s ease-in;
+}
+
+/* Optional: Add media queries for larger screens to show the full menu */
+@media screen and (min-width: 768px) {
+  .menu-icon, #menu-toggle {
+    display: none; /* Hide the hamburger menu icon */
+  }
+  .menu-content {
+    max-height: none; /* Always show the content */
+    display: flex; /* Display horizontally */
+    /* Add other desktop styles here */
+  }
+}
+
+.divider{
+    width: 100%;
+    height: 1px;
+    background-color: #89b9af00;
+}
+
+/* HERO SECTION)*/
+
+#hero{
+    /* base = mobile */
+    width: 100%; 
+    display: flex;
+    gap: 1px;
+    justify-content:first baseline;
+    padding-top: 8rem;
+    max-width: 100%;
+    max-height: auto;
+}
+
+/* then scale up */
+@media (min-width: 768px) {
+  .card { width: 50%; }
+}
+
+
+
+#herotextcontainer{
+    display: block;
+   
+}
+.hi{
+    font-family: 'Crimson Pro', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: rgb(29, 29, 29);
+}
+.intro{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    font-size: 100%;
+    padding-top: 0px;
+    color: rgb(113, 113, 113);
+}
+#catstack{
+    padding-top: 1px;;
+}
+
+#prodProjects{
+    display: grid;
+    grid-template-columns:  repeat(2, 1fr);
+    padding-top: 0px;   
+    gap: 20px; 
+    align-content: first baseline; 
+    
+}
+@media (max-width: 768px) {
+    #prodProjects {
+        grid-template-columns:  1fr;
+    }
+}
+#prodFrame{
+    border-radius: 80px;
+}
+.prodImg{
+    width: 100%;
+    height: auto;
+}
+.prodInfo{
+    font-family: 'source sans pro', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.prodName{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.prodTags{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.circletag{
+    width: 4px;
+    height: 4px;
+    background-color: #000000;
+    border-radius: 150%;
+}

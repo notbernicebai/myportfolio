@@ -1,0 +1,192 @@
+<!doctype html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bernice Bai </title>
+    <link rel="icon" href="../imgsrc/cursor.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Syne:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:100,200,300,400,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,600&display=swap">
+	<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="vendor">
+
+    <div id="custom-cursor">
+        <span id="cursor-default"></span>
+        <span id="cursor-hover"></span>
+    </div>
+
+    <header>
+        <nav id="navbar">
+        <div id="logo">
+            <img src="../imgsrc/bfavicon.svg" alt="Logo">
+        </div>
+        <button id="menu-btn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div id="nav-links">
+            <a href="../design/index.html">WORK</a>
+            <a href="../design/about.html">ABOUT</a>
+            <a href="#contact">QUEST</a>
+            <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link">RESUME</a>
+        </div>
+        </nav>
+
+        <div class="divider">
+        </div>
+
+    </header>
+
+    <div class="shell">
+    
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+        <a class="back-link" href="../design/index.html">&larr; BACK</a>
+        <nav>
+            <a href="#overview" class="active">Overview</a>
+            <a href="#Problem">Problem</a>
+            <a href="#Opportunity">Opportunity</a>
+            <a href="#user-personas">User Personas  </a>
+            <a href="#wireframes">Wireframes</a>
+            <a href="design">Design Choices & Trade-Offs</a>
+            <a href="#prototype">Prototype</a>
+            <a href="#reflection">Usability Improvements</a>
+
+        </nav>
+        </div>
+    </aside>
+    <main>
+    
+        <p class="eyebrow"> VENDORIZEME &nbsp;·&nbsp; CONCEPT 2026</p>
+        <h1 class="title">Event Management &amp; Event Planning</h1>
+        <div class="hero-box">
+            <img class= "projassets" src="../imgsrc/projects/vendor.png" alt="Research">
+        </div>
+    
+    
+        <dl class="meta-grid">
+        <div>
+            <dt>Role</dt>
+            <dd>Product Designer</dd>
+        </div>
+        <div>
+            <dt>Timeline</dt>
+            <dd> July 2026</dd>
+        </div>
+        <div>
+            <dt>Skills</dt>
+            <dd>Research<br>Mobile Design<br> Prototyping</dd>
+        </div>
+        </dl>
+    
+    <section id="overview">
+        <p class="eyebrow">OVERVIEW</p>
+        <h2 class="section-title">A place to find and curate vendors for your events.</h2>
+        <p class="lede">An organizer searches for a vendor, submits a booking request, and completes payment. The flow spans 5 core screens, from discovery through booking confirmation and status tracking.</p>
+
+        <div class="col-grid">
+            <div>
+                <h3 id="Problem">Problem</h3>
+                <p>Taking two problem statements<br> <br> 1. Ada is an event organizer who wants to find legitimate vendors and improve her event organization workflow<br> <br> 2. Fatima is a graduate who wants a way to organize her first event as a novice and wants to get the best vendors and services.</p>
+            </div>
+        
+            <div>
+                <h3 id="Opportunity">Opportunity</h3>
+                <p>VendorizeMe will let users compare and get connected to the best vendors for their event which will affect the outcome/success of the event. Effectiveness will be measured by positive feedback and recurring users.</p>
+        
+    
+        </div>
+    </section>
+
+     <section id="user-personas">
+        <p class="eyebrow">USER PERSONAS</p>
+        <h2 class="section-title">2 types of users the app would serve</h2>
+        <p class="lede"></p>
+        
+        <div class="stack-box">
+                <div class="user-personas">
+                    <img src="../imgsrc/ada.png" alt="Wireframes">
+                    <img src="../imgsrc/fati.png" alt="Wireframes">
+                </div>
+            </div>
+            
+    </section>
+
+    
+    <section id="wireframes">
+        <p class="eyebrow">WIREFRAMES</p>
+        <h2 class="section-title">Low fidelity wireframes</h2>
+        <p class="lede"> Drafted low fidelity wireframes to map out the platform. </p>
+        <div class="stack-box">
+                <div class="wireframes">
+                    <img src="../imgsrc/vw0.png" alt="Wireframes">
+                    <img src="../imgsrc/vw1.png" alt="Wireframes">
+                    <img src="../imgsrc/vw2.png" alt="Wireframes">
+                    <img src="../imgsrc/vw4.png" alt="Wireframes">
+                </div>
+            
+            </div>
+
+    </section>
+
+    <section id="design">
+        <p class="eyebrow">DESIGN CHOICES & TRADE-OFFS</p>
+        <h2 class="section-title">Design Choices & Trade-offs</h2>
+        <p class="lede"></p>
+         <div class="col-grid">
+            <div>
+            <h3>Home screen leads with search, not a feed</h3>
+            <p>The hero section goes straight into “search vendors in Lagos,” with quick categories for DJs, Caterers, Venues, Photography, and Decor. Most users already know what they need, so I didn't want them scrolling through inspiration content first. The AI recommendation box sits below for people who need help deciding where to start.</p>
+            </div>
+            <div>
+            <h3>Category tabs on search results instead of a filter modal</h3>
+            <p>The category tabs stay visible when browsing results, so users can switch between Catering, Venues, Photography, and Décor without starting over. Vendor cards show the photo, verified badge, rating, distance, and starting price — enough to shortlist without opening every profile.</p>
+            </div>
+            <div>
+            <h3>Vendor profiles work as both a pitch and a decision screen</h3>
+            <p>Response time and years in business sit under the rating because trust is a major concern in a marketplace like this. Packages show starting prices upfront to avoid surprises. Message and Request to Book sit side by side because users may want to ask questions before committing.</p>
+            </div>
+            <div>
+            <h3>The booking form asks for what the vendor needs</h3>
+            <p>The form asks for the event date, type, guest count, location, and an optional message. I kept it to one screen to avoid unnecessary friction. The selected package is shown at the bottom as a summary, so users are confirming their choice rather than making the decision again..</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="prototype">
+        <p class="eyebrow">PROTOTYPE</p>
+        <h2 class="section-title">Prototype</h2>
+        <p class="lede">Figma Prototype of how the user journey might go</p>
+
+        <div >
+            <video width="640" height="360" controls poster="thumbnail.jpg">
+            <source src="../imgsrc/vendor.mp4" type="video/mp4">
+            <source src="movie.webm" type="video/webm">
+            Your browser does not support the video tag.
+            </video>
+        </div>
+        
+    </section>
+
+      <section id="reflection">
+        <p class="eyebrow">Reflections</p>
+        <h2 class="section-title">Usability Improvements</h2>
+        <p class="lede">Starting prices are shown on every vendor card, so users can quickly rule out options that are outside their budget.<br>
+- Similar and complementary services are surfaced on the vendor profile, so someone booking a caterer can also discover a venue or photographer without starting a new search.<br>
+- The deposit breakdown appears before users choose a payment method, so the full commitment is clear before they take action.<br>
+- The selected package carries over from the vendor profile into the booking form automatically, so users don't have to choose the same thing twice.</p>
+       
+    
+    </section>
+   
+    </main>
+    
+    </div>
+ 
+</body>
+<script src="../script.js"></script>
+</html>

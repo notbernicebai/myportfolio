@@ -3,7 +3,9 @@
     cursor: none;
 }
 
-
+.vendor {
+    accent-color: #ffc3c3;
+}
 
 body {
   
@@ -129,7 +131,7 @@ body {
     top: 70px;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+
     padding: 24px 16px;
     border-top: 1px solid #eeeeee;
 }
@@ -393,6 +395,7 @@ footer {
 
     display: flex;
     flex-direction: column;
+    padding: 5% 5% 5% 8%;
 }
 @media (min-width: 768px) {
     #aboutsection {
@@ -540,6 +543,15 @@ footer {
     background-color: #111111;
 }
 
+.stack-box-quest {
+    display: block;
+    width: 80%;
+    padding: 1% 1% 1% 1%;
+}
+.quest-certified{
+    width: 70%;
+    height: auto;
+}
 
 /* ACCORDION */
 .section-label {
@@ -1029,6 +1041,20 @@ footer {
   }
   .stack-box iframe{
     width: 100%;
+  }
+  .stack-box .user-personas{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+  }
+  .stack-box .user-personas img{  
+    margin:5px;
+    width: 90%;
+    height: auto;
+    border-radius: 2px;
   }
 .stack-box .wireframes{
     width: 100%;
