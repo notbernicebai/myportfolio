@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Timer</title>
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root{
+    --navy: #16233b;
+    --navy-soft: #24344f;
+    --blue-light: #cfe8fb;
+    --blue-pale: #eaf4fd;
+    --blue-pale-border: #d7ecfb;
+    --ring-track: #dbe8f7;
+    --ring-fill: #5ea0d8;
+    --blush: #fbdcdc;
+    --blush-soft: #fce8e8;
+    --text: #16233b;
+    --text-dim: #6b7686;
+    --text-faint: #9aa4b2;
+    --border: #e7ebf1;
+    --bg: #ffffff;
+    --page-bg: #eef2f6;
+    --toggle-off: #d7dee7;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    font-family: var(--font);
+    background: var(--page-bg);
+    color: var(--text);
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    min-height:100vh;
+    padding: 24px;
+  }
+  .app{
+    width:100%;
+    max-width: 900px;
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(22,35,59,0.10);
+    overflow:hidden;
+    min-height: 640px;
+  }
+
+  /* ============ HEADER / NAV ============ */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:800;
+    font-size: 16px;
+  }
+  .brand .logo{ width:24px; height:24px; color: var(--ring-fill); }
+  nav{ display:flex; gap: 26px; }
+  nav button{
+    background:none; border:none;
+    font-size:12px; letter-spacing:0.06em; font-weight:700;
+    color: var(--text-faint);
+    cursor:pointer; padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+  }
+  nav button.active{ color: var(--navy); border-bottom-color: var(--navy); }
+
+  .view{ display:none; padding: 28px; }
+  .view.active{ display:block; }
+
+  /* ============ TIMER VIEW ============ */
+  .timer-grid{
+    display:grid;
+    grid-template-columns: 150px 1fr 190px;
+    gap: 16px;
+  }
+  .side-left{ display:flex; flex-direction:column; gap: 18px; }
+  .session-count{
+    width:44px;height:44px;
+    border:1.5px solid var(--navy);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:15px;
+  }
+  .side-left ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap: 16px; }
+  .side-left li{
+    display:flex; align-items:center; gap:10px;
+    font-size: 13px; color: var(--navy); cursor:pointer; font-weight:600;
+  }
+  .side-left li .ic{ width:16px; text-align:center; color: var(--ring-fill); }
+  .side-left li:hover{ opacity:0.7; }
+
+  .music-card{
+    display:none;
+    background: var(--blue-pale);
+    border: 1px solid var(--blue-pale-border);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    margin-top: -4px;
+  }
+  .music-card.open{ display:block; }
+  .music-card .mc-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    margin-bottom: 10px;
+  }
+  .music-card .mc-title{ font-size:13px; font-weight:800; border-left:2px solid var(--navy); padding-left:6px; }
+  .music-card .mc-sub{ font-size:10px; color: var(--text-dim); padding-left:8px; margin-top:2px; }
+  .mc-platforms{ display:flex; gap:6px; }
+  .mc-platforms span{
+    width:18px; height:18px; border-radius:5px; display:flex; align-items:center; justify-content:center;
+    font-size:10px; background:#fff; border:1px solid var(--border);
+  }
+  .mc-song{ display:flex; align-items:center; gap:6px; font-size:12px; font-style:italic; margin: 8px 0 12px; }
+  .mc-controls{ display:flex; align-items:center; justify-content:center; gap: 18px; }
+  .mc-controls button{
+    background:none; border:none; cursor:pointer; font-size:14px; color: var(--navy);
+  }
+  .mc-controls .play{
+    width:34px; height:34px; border-radius:50%; background: var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:13px;
+  }
+
+  .center{ display:flex; flex-direction:column; align-items:center; }
+  .ring-wrap{ position:relative; width: 260px; height: 260px; }
+  .ring-wrap svg{ transform: rotate(-90deg); }
+  .ring-track{ stroke: var(--ring-track); }
+  .ring-fill{ stroke: var(--ring-fill); stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+  .time{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size: 46px; font-weight:800; letter-spacing: 1px; font-variant-numeric: tabular-nums;
+  }
+  .controls{ margin-top: 22px; display:flex; gap:12px; align-items:center; }
+  .start-btn{
+    background: var(--navy); color:#fff; border:none;
+    padding: 13px 46px; border-radius: 999px; font-size: 15px; font-weight:700;
+    cursor:pointer; transition: transform .15s ease, background .15s ease;
+  }
+  .start-btn:hover{ background: var(--navy-soft); transform: translateY(-1px); }
+  .reset-btn{
+    background: var(--blue-pale); color: var(--navy); border: 1px solid var(--border);
+    padding: 13px 20px; border-radius: 999px; font-size: 13px; font-weight:700; cursor:pointer;
+  }
+  .reset-btn:hover{ background: var(--ring-track); }
+
+  /* game mode box */
+  .game-box{
+    display:none;
+    position:relative;
+    width: 100%;
+    max-width: 480px;
+    height: 340px;
+    border: 1.5px solid var(--navy);
+    border-radius: var(--radius-lg);
+    align-items:center; justify-content:center;
+  }
+  .game-box.active{ display:flex; }
+  .center.game .ring-wrap{ display:none; }
+  .center.game .controls{ display:none; }
+  .ghost-time{
+    position:absolute; bottom: 22px; left: 26px;
+    font-size: 22px; font-weight:800; font-variant-numeric: tabular-nums;
+  }
+  .game-start{
+    position:absolute; bottom: -22px; left:50%; transform: translateX(-50%);
+  }
+  @keyframes float{
+    0%,100%{ transform: translateY(0px); }
+    50%{ transform: translateY(-10px); }
+  }
+  .ghost-svg{ width: 150px; height: auto; animation: float 3.2s ease-in-out infinite; }
+
+  .side-right{ display:flex; flex-direction:column; gap: 18px; }
+  .game-mode{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    font-size: 12px; font-weight:700;
+    background: var(--blue-pale); border: 1px solid var(--blue-pale-border);
+    border-radius: 999px; padding: 8px 8px 8px 12px;
+  }
+  .game-mode .label{ display:flex; align-items:center; gap:8px; }
+  .game-mode .label svg{ width:18px; height:18px; }
+  .switch{ width: 38px; height: 20px; background: var(--navy); border-radius: 999px; position:relative; cursor:pointer; border:none; flex-shrink:0; }
+  .switch::after{ content:""; position:absolute; top:2px; left:2px; width:16px;height:16px; background:#fff; border-radius:50%; transition: left .15s ease; }
+  .switch.off{ background: var(--toggle-off); }
+  .switch.off::after{ left: 20px; }
+
+  .modes{ display:flex; flex-direction:column; gap: 2px; }
+  .modes .heading{ display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; color: var(--navy); margin-bottom: 10px; }
+  .mode-option{
+    background:none; border:none; text-align:left; padding: 9px 6px 9px 22px;
+    font-size: 13px; color: var(--text-dim); cursor:pointer; border-radius: 8px; font-weight:500;
+  }
+  .mode-option.active{ color: var(--navy); font-weight:700; background: var(--blue-pale); }
+  .mode-option:hover{ background: var(--blue-pale); }
+
+  /* task list */
+  .task-list{ margin-top: 32px; }
+  .tl-head{ display:flex; align-items:flex-start; justify-content:space-between; }
+  .tl-title-wrap{ border-left: 3px solid var(--navy); padding-left: 10px; }
+  .tl-title{ font-size:17px; font-weight:800; }
+  .tl-sub{ font-size: 12px; font-style: italic; color: var(--text-dim); margin-top:2px; }
+  .tl-edit{ color: var(--text-dim); cursor:pointer; }
+  .task-item{
+    display:flex; align-items:center; gap:14px;
+    padding: 14px; border-radius: var(--radius-sm); margin-top: 12px;
+  }
+  .task-item.highlight{ background: var(--blue-pale); }
+  .task-icon{ width:34px; height:34px; border-radius: 8px; background: var(--blush); flex-shrink:0; }
+  .task-info{ flex:1; }
+  .task-info .eyebrow{ font-size: 10px; color: var(--text-dim); }
+  .task-info .name{ font-size: 15px; font-weight:700; }
+  .task-item .time-range{ font-size: 12px; color: var(--text-dim); font-weight:600; }
+
+  /* ============ PROJECTS VIEW ============ */
+  .create-project{
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--blue-pale); border: 1px solid var(--blue-pale-border);
+    padding: 10px 20px 10px 10px; border-radius: 999px; cursor:pointer;
+  }
+  .create-project .plus-ic{
+    width:28px; height:28px; border-radius:8px; background: var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .create-project span.txt{ font-weight:800; font-size: 15px; }
+  .proj-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 30px; }
+  .sort{ display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color: var(--navy); cursor:pointer; text-decoration: underline; text-underline-offset:3px; }
+
+  .proj-group{ margin-bottom: 36px; }
+  .pg-head{ display:flex; align-items:center; justify-content:space-between; border-left: 3px solid var(--navy); padding-left: 10px; margin-bottom: 14px; }
+  .pg-head h3{ margin:0; font-size:17px; font-weight:800; }
+  .pg-head .tl-edit{ margin-right: 4px; }
+  .pg-desc{ font-size:13px; color: var(--text-dim); margin: -6px 0 14px 13px; }
+
+  .proj-item{ display:flex; align-items:center; gap:14px; padding: 10px 4px; }
+  .proj-item .task-icon{ background: var(--blush); }
+  .proj-item.dim{ opacity: 0.45; }
+  .proj-item .name{ font-size:14px; font-weight:800; letter-spacing:0.02em; }
+  .proj-item .meta{ font-size:12px; color: var(--text-dim); font-weight:600; }
+
+  .proj-footer{ display:flex; align-items:center; gap: 16px; margin-top: 6px; padding-left: 4px; }
+  .progress{ flex:1; height:5px; background: var(--border); border-radius: 999px; overflow:hidden; }
+  .progress .fill{ height:100%; background: var(--navy); border-radius:999px; }
+  .start-link{ font-size:13px; font-weight:700; color: var(--navy); text-decoration: underline; text-underline-offset:3px; cursor:pointer; white-space:nowrap; }
+
+  /* ============ NOTIFICATIONS / ALARM VIEW ============ */
+  .add-alarm{ display:inline-flex; align-items:center; gap:10px; cursor:pointer; margin-bottom: 36px; }
+  .add-alarm .plus-ic{ font-size:16px; font-weight:800; }
+  .add-alarm .bell-ic{
+    width:34px; height:34px; border-radius:50%; background: var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .add-alarm span.txt{ font-size:22px; font-weight:800; }
+  .alarm-sub{ border-left:3px solid var(--navy); padding-left: 10px; font-size:15px; font-style:italic; font-weight:600; margin-bottom: 24px; }
+  .alarm-item{ display:flex; align-items:center; justify-content:space-between; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .alarm-item:last-child{ border-bottom:none; }
+  .alarm-left .name{ font-size:16px; font-weight:700; }
+  .alarm-left .meta{ font-size:12px; color: var(--text-dim); margin-top: 2px; }
+  .alarm-right{ display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
+  .close-x{ color: var(--text-faint); cursor:pointer; font-size:13px; }
+
+  /* ============ SETTINGS VIEW ============ */
+  .settings-group{ margin-bottom: 30px; }
+  .settings-group h4{ font-size:12px; letter-spacing:0.06em; color: var(--text-faint); text-transform:uppercase; margin: 0 0 10px; }
+  .settings-row{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .settings-row:last-child{ border-bottom:none; }
+  .settings-row .name{ font-size:14px; font-weight:700; }
+  .settings-row .meta{ font-size:12px; color: var(--text-dim); margin-top:2px; }
+
+  @media (max-width: 700px){
+    .timer-grid{ grid-template-columns: 1fr; }
+    .side-left{ flex-direction:row; flex-wrap:wrap; }
+    .side-left ul{ flex-direction:row; flex-wrap:wrap; }
+    .center{ order:-1; margin-bottom: 12px; }
+    nav{ gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <header>
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C7 2 4 6 4 11v7c1 .6 1.6 0 2.4-.4.8-.5 1.6.9 2.4.4.8-.5 1.6.9 2.4.4.8-.5 1.6.9 2.4.4.8-.5 1.6-1 2.4-.4V11c0-5-3-9-4-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      Pomodoro Timer
+    </div>
+    <nav>
+      <button class="nav-btn active" data-view="timer">TIMER</button>
+      <button class="nav-btn" data-view="projects">PROJECTS</button>
+      <button class="nav-btn" data-view="notifications">NOTIFICATIONS</button>
+      <button class="nav-btn" data-view="settings">SETTINGS</button>
+    </nav>
+  </header>
+
+  <!-- ============ TIMER VIEW ============ -->
+  <section class="view active" id="view-timer">
+    <div class="timer-grid">
+      <div class="side-left">
+        <div class="session-count" id="sessionCount">01</div>
+        <ul>
+          <li><span class="ic">📈</span> View Trends</li>
+          <li><span class="ic">＋</span> Add Task</li>
+          <li><span class="ic">⇄</span> Switch Project</li>
+          <li id="musicToggle"><span class="ic">♪</span> Music</li>
+        </ul>
+        <div class="music-card" id="musicCard">
+          <div class="mc-head">
+            <div>
+              <div class="mc-title">Music</div>
+              <div class="mc-sub">now playing songs from pomodoro library</div>
+            </div>
+            <div class="mc-platforms"><span>▶</span><span>♫</span><span>🔗</span></div>
+          </div>
+          <div class="mc-song">♪ <span>lofi beats (study with rain) + ra</span></div>
+          <div class="mc-controls">
+            <button>⏪</button>
+            <button class="play" id="musicPlay">▶</button>
+            <button>⏩</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="center" id="centerArea">
+        <div class="ring-wrap" id="ringWrap">
+          <svg width="260" height="260" viewBox="0 0 260 260">
+            <circle class="ring-track" cx="130" cy="130" r="115" stroke-width="10" fill="none"/>
+            <circle id="ringFill" class="ring-fill" cx="130" cy="130" r="115" stroke-width="10" fill="none" stroke-dasharray="722.6" stroke-dashoffset="0"/>
+          </svg>
+          <div class="time" id="timeDisplay">25:00</div>
+        </div>
+        <div class="controls">
+          <button class="reset-btn" id="resetBtn">Reset</button>
+          <button class="start-btn" id="startBtn">Start</button>
+        </div>
+
+        <div class="game-box" id="gameBox">
+          <svg class="ghost-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 90C40 52 66 24 100 24C134 24 160 52 160 90V186C150 180 142 192 132 186C122 180 114 192 104 186C94 180 86 192 76 186C66 180 58 192 48 186C44 184 42 182 40 180Z" fill="#cfe8fb" stroke="#16233b" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="80" cy="95" r="6.5" fill="#16233b"/>
+            <circle cx="120" cy="95" r="6.5" fill="#16233b"/>
+            <ellipse cx="100" cy="114" rx="6" ry="4.5" fill="#16233b"/>
+            <path d="M56 108C50 112 44 112 38 108" stroke="#16233b" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M20 40L24 50L34 54L24 58L20 68L16 58L6 54L16 50Z" fill="#16233b"/>
+            <path d="M172 130L175 138L183 141L175 144L172 152L169 144L161 141L169 138Z" fill="#16233b"/>
+            <path d="M150 20L152 26L158 28L152 30L150 36L148 30L142 28L148 26Z" fill="#16233b"/>
+          </svg>
+          <div class="ghost-time" id="ghostTime">25:00</div>
+          <button class="start-btn game-start" id="startBtnGame">Start</button>
+        </div>
+      </div>
+
+      <div class="side-right">
+        <div class="game-mode">
+          <span class="label">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 11c0-4.5 3-8 7-8s7 3.5 7 8v9c-1 .5-1.6 0-2.4-.5-.8-.4-1.6 1-2.4.5-.8-.4-1.6 1-2.4.5-.8-.4-1.6 1-2.4.5-.8-.4-1.6 1-2.4.5V11Z" fill="#cfe8fb" stroke="#16233b" stroke-width="1.3"/></svg>
+            Game Mode
+          </span>
+          <button class="switch off" id="gameSwitch"></button>
+        </div>
+        <div class="modes">
+          <div class="heading">✎ <span id="activeModeLabel">Focus</span></div>
+          <button class="mode-option active" data-mode="focus" data-mins="25">Focus</button>
+          <button class="mode-option" data-mode="long" data-mins="15">Long</button>
+          <button class="mode-option" data-mode="short" data-mins="5">Short</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="task-list">
+      <div class="tl-head">
+        <div class="tl-title-wrap">
+          <div class="tl-title">Task List</div>
+          <div class="tl-sub">Set focus goals and intentions for the sessions</div>
+        </div>
+        <span class="tl-edit">✎</span>
+      </div>
+      <div class="task-item highlight">
+        <div class="task-icon"></div>
+        <div class="task-info">
+          <div class="eyebrow">go get it done</div>
+          <div class="name">Mid Day Study</div>
+        </div>
+        <div class="time-range">13:00-14:00</div>
+      </div>
+      <div class="task-item">
+        <div class="task-icon"></div>
+        <div class="task-info">
+          <div class="name" style="text-transform:uppercase;">Project Research</div>
+        </div>
+        <div class="time-range">Freeform</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS VIEW ============ -->
+  <section class="view" id="view-projects">
+    <div class="proj-top">
+      <div class="create-project">
+        <span class="plus-ic">＋</span>
+        <span class="txt">Create Project</span>
+      </div>
+      <div class="sort">▾ Sort</div>
+    </div>
+
+    <div class="proj-group">
+      <div class="pg-head">
+        <h3>Exam Preparation</h3>
+        <span class="tl-edit">✎</span>
+      </div>
+      <div class="proj-item">
+        <div class="task-icon"></div>
+        <div class="task-info"><div class="name">PROJECT RESEARCH</div></div>
+        <div class="meta">Freeform</div>
+      </div>
+      <div class="proj-item">
+        <div class="task-icon"></div>
+        <div class="task-info"><div class="name">PROJECT RESEARCH</div></div>
+        <div class="meta">13:00 - 14:00</div>
+      </div>
+      <div class="proj-item dim">
+        <div class="task-icon"></div>
+        <div class="task-info"><div class="name">PROJECT RESEARCH</div></div>
+        <div class="meta">15:00 - 16:00</div>
+      </div>
+      <div class="proj-footer">
+        <div class="progress"><div class="fill" style="width:14%"></div></div>
+        <span class="start-link">Start</span>
+      </div>
+    </div>
+
+    <div class="proj-group">
+      <div class="pg-head">
+        <h3>Mindfulness Practice</h3>
+        <span class="tl-edit">✎</span>
+      </div>
+      <div class="pg-desc">Practice mindfulness, calm and meditation for self improvement</div>
+      <div class="proj-footer">
+        <div class="progress"><div class="fill" style="width:14%"></div></div>
+        <span class="start-link">Start</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NOTIFICATIONS / ALARM VIEW ============ -->
+  <section class="view" id="view-notifications">
+    <div class="add-alarm">
+      <span class="plus-ic">＋</span>
+      <span class="bell-ic">🔔</span>
+      <span class="txt">Add Alarm</span>
+    </div>
+    <div class="alarm-sub">Set Focus Goals And Intentions For The Sessions</div>
+
+    <div class="alarm-item">
+      <div class="alarm-left">
+        <div class="name">Study Time</div>
+        <div class="meta">Alarm, Every Weekday</div>
+      </div>
+      <div class="alarm-right">
+        <span class="close-x">✕</span>
+        <button class="switch" data-alarm></button>
+      </div>
+    </div>
+    <div class="alarm-item">
+      <div class="alarm-left">
+        <div class="name">Meditations</div>
+        <div class="meta">Alarm, Every Weekday</div>
+      </div>
+      <div class="alarm-right">
+        <span class="close-x">✕</span>
+        <button class="switch" data-alarm></button>
+      </div>
+    </div>
+    <div class="alarm-item">
+      <div class="alarm-left">
+        <div class="name">Math Revisions</div>
+        <div class="meta">Alarm, Every Weekday</div>
+      </div>
+      <div class="alarm-right">
+        <span class="close-x">✕</span>
+        <button class="switch off" data-alarm></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS VIEW ============ -->
+  <section class="view" id="view-settings">
+    <div class="settings-group">
+      <h4>Session</h4>
+      <div class="settings-row">
+        <div><div class="name">Auto-start breaks</div><div class="meta">Start the next break as soon as focus ends</div></div>
+        <button class="switch" data-setting></button>
+      </div>
+      <div class="settings-row">
+        <div><div class="name">Auto-start focus</div><div class="meta">Start the next focus session automatically</div></div>
+        <button class="switch off" data-setting></button>
+      </div>
+    </div>
+    <div class="settings-group">
+      <h4>Sound</h4>
+      <div class="settings-row">
+        <div><div class="name">Alarm sound</div><div class="meta">Play a sound when a session ends</div></div>
+        <button class="switch" data-setting></button>
+      </div>
+      <div class="settings-row">
+        <div><div class="name">Ticking sound</div><div class="meta">Soft tick while the timer is running</div></div>
+        <button class="switch off" data-setting></button>
+      </div>
+    </div>
+    <div class="settings-group">
+      <h4>Account</h4>
+      <div class="settings-row">
+        <div><div class="name">Game Mode by default</div><div class="meta">Open the timer in Game Mode</div></div>
+        <button class="switch off" data-setting></button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  /* ---- nav switching ---- */
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-' + btn.dataset.view).classList.add('active');
+    });
+  });
+
+  /* ---- timer logic ---- */
+  const DURATIONS = { focus: 25 * 60, long: 15 * 60, short: 5 * 60 };
+  let currentMode = 'focus';
+  let totalSeconds = DURATIONS[currentMode];
+  let remaining = totalSeconds;
+  let timerId = null;
+  let running = false;
+  let sessionCount = 1;
+  let gameMode = false;
+
+  const timeDisplay = document.getElementById('timeDisplay');
+  const ghostTime = document.getElementById('ghostTime');
+  const activeModeLabel = document.getElementById('activeModeLabel');
+  const startBtn = document.getElementById('startBtn');
+  const startBtnGame = document.getElementById('startBtnGame');
+  const resetBtn = document.getElementById('resetBtn');
+  const ringFill = document.getElementById('ringFill');
+  const sessionCountEl = document.getElementById('sessionCount');
+  const gameSwitch = document.getElementById('gameSwitch');
+  const gameBox = document.getElementById('gameBox');
+  const ringWrap = document.getElementById('ringWrap');
+  const centerArea = document.getElementById('centerArea');
+  const modeButtons = document.querySelectorAll('.mode-option');
+
+  const CIRC = 2 * Math.PI * 115;
+  ringFill.setAttribute('stroke-dasharray', CIRC);
+
+  function formatTime(s){
+    const m = Math.floor(s / 60).toString().padStart(2, '0');
+    const sec = (s % 60).toString().padStart(2, '0');
+    return `${m}:${sec}`;
+  }
+
+  function updateDisplay(){
+    const f = formatTime(remaining);
+    timeDisplay.textContent = f;
+    ghostTime.textContent = f;
+    const progress = 1 - remaining / totalSeconds;
+    ringFill.setAttribute('stroke-dashoffset', CIRC * progress);
+  }
+
+  function setRunningUI(isRunning){
+    startBtn.textContent = isRunning ? 'Pause' : 'Start';
+    startBtnGame.textContent = isRunning ? 'Pause' : 'Start';
+  }
+
+  function tick(){
+    if (remaining > 0){
+      remaining--;
+      updateDisplay();
+    } else {
+      clearInterval(timerId);
+      running = false;
+      setRunningUI(false);
+      if (currentMode === 'focus'){
+        sessionCount++;
+        sessionCountEl.textContent = sessionCount.toString().padStart(2, '0');
+      }
+    }
+  }
+
+  function toggleRun(){
+    if (running){
+      clearInterval(timerId);
+      running = false;
+      setRunningUI(false);
+    } else {
+      running = true;
+      setRunningUI(true);
+      timerId = setInterval(tick, 1000);
+    }
+  }
+  startBtn.addEventListener('click', toggleRun);
+  startBtnGame.addEventListener('click', toggleRun);
+
+  resetBtn.addEventListener('click', () => {
+    clearInterval(timerId);
+    running = false;
+    setRunningUI(false);
+    remaining = totalSeconds;
+    updateDisplay();
+  });
+
+  function setMode(mode){
+    currentMode = mode;
+    totalSeconds = DURATIONS[mode];
+    remaining = totalSeconds;
+    activeModeLabel.textContent = mode === 'focus' ? 'Focus' : mode === 'long' ? 'Long' : 'Short';
+    modeButtons.forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    updateDisplay();
+    if (running){
+      clearInterval(timerId);
+      running = false;
+      setRunningUI(false);
+    }
+  }
+  modeButtons.forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode)));
+
+  gameSwitch.addEventListener('click', () => {
+    gameMode = !gameMode;
+    gameSwitch.classList.toggle('off', !gameMode);
+    gameBox.classList.toggle('active', gameMode);
+    ringWrap.style.display = gameMode ? 'none' : 'block';
+    centerArea.classList.toggle('game', gameMode);
+  });
+
+  updateDisplay();
+
+  /* ---- music dropdown ---- */
+  const musicToggle = document.getElementById('musicToggle');
+  const musicCard = document.getElementById('musicCard');
+  musicToggle.addEventListener('click', () => musicCard.classList.toggle('open'));
+
+  const musicPlay = document.getElementById('musicPlay');
+  let musicPlaying = false;
+  musicPlay.addEventListener('click', () => {
+    musicPlaying = !musicPlaying;
+    musicPlay.textContent = musicPlaying ? '❚❚' : '▶';
+  });
+
+  /* ---- generic toggles (alarms + settings) ---- */
+  document.querySelectorAll('[data-alarm], [data-setting]').forEach(sw => {
+    sw.addEventListener('click', () => sw.classList.toggle('off'));
+  });
+
+  /* ---- alarm remove ---- */
+  document.querySelectorAll('.close-x').forEach(x => {
+    x.addEventListener('click', () => {
+      const row = x.closest('.alarm-item');
+      row.style.opacity = '0';
+      setTimeout(() => row.remove(), 150);
+    });
+  });
+</script>
+
+</body>
+</html>
