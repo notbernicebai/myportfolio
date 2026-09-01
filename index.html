@@ -67,7 +67,13 @@
             align-items: center;
             gap: 20px;
             }
-            
+            @media (max-width: 768px) {
+                .home {
+                    flex-direction: column;
+                    text-align: center;
+                }
+            }
+
         .home img{
             max-width: 70%;
             height: auto;
@@ -111,23 +117,37 @@
             gap: 24px;
             margin-bottom: 40px;
         }
+          @media (max-width: 768px) {
+            .route{
+               
+                justify-content: center;
+            }
+        }
+
 
         .route a {
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: #005457;
             text-decoration: none;
-            border-radius: 100%;
+            border-radius: 15px;
             border: 1.5px solid #868686;
-            padding: 2%;
+            padding: 3%;
         }
 
         .route a:hover { background-color: #002e2d; color:#ffffff; border-color: #ffffff; }
 
         .links {
             display: flex;
+           
             gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .links {
+               
+                justify-content: center;
+            }
         }
 
         .links a {
