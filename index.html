@@ -60,6 +60,20 @@
             justify-content: center;
             padding: 80px 0 40px;
         }
+        .home {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+                    }
+        .home img{
+            max-width: 70%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid #111111;
+            border-radius: 50%;
+        }
 
         .label {
             font-size: 11px;
@@ -154,13 +168,15 @@
     <div id="logo">
         <img src="imgsrc/bfavicon.svg" alt="Logo">
     </div>
-    <span class="nav-right">Coming Soon</span>
+    <span class="nav-right"></span>
 </nav>
 
 <main>
+    <div class="home">
+    <div>
     <p class="label">Portfolio</p>
-    <h1>Something <em><span class="accent">thoughtful</span></em><br>is on its way.</h1>
-    <p>I'm Bernice — a product designer rooted in art and technology. My portfolio spans product design and research as well as marketing/content work.</p>
+    <h1>Welcome to my <em><span class="accent">creative</span></em><br>portfolio.</h1>
+    <p>I'm Bernice — a designer rooted in art and technology. My portfolio spans product design and research as well as marketing/content work.</p>
     <div class="route">
         <a href="design/index.html">Design</a>
         <a href="marketing/index.html">Marketing</a>
@@ -169,6 +185,11 @@
         <a href="https://www.linkedin.com/in/bernice-bai-6373b129a/" target="_blank">LinkedIn</a>
         <a href="mailto:msenbai@gmail.com">Email</a>
         <a href="https://drive.google.com/file/d/17-NoSZiSDzahAH1HQ-_Etnf_DgS73Qhv/view?usp=drive_link" target="_blank">Resume</a>
+    </div>
+    </div>
+    <div>
+         <img src="imgsrc/me.png" alt="picture of Bernice Bai" class="heroimg">
+    </div>
     </div>
 </main>
 
